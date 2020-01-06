@@ -1,0 +1,18 @@
+micronaut:
+  application:
+    name: mmg
+  server:
+    port: ${PORT:8081}
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /api-docs/**
+      default:
+        enabled: true
+        mapping: "/**"
+        paths: "file:/opt/ui/dist"
+
+db:
+  url: ${DATABASE_URL:`mongodb://localhost:27017/local`}
+  database-name: mmg
