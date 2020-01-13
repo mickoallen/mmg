@@ -1,5 +1,6 @@
 package com.mick.mmg.round.api;
 
+import com.mick.mmg.round.entity.UserGuessResult;
 import com.mick.mmg.round.entity.UserRoundGuess;
 import com.mick.mmg.round.service.RoundService;
 
@@ -15,9 +16,15 @@ public class RoundApi {
         this.roundService = roundService;
     }
 
-    public RoundGuessResponseDto roundGuess(RoundGuessDto roundGuessDto) {
+    public UserGuessRoundResultDto roundGuess(RoundGuessDto roundGuessDto) {
         UserRoundGuess userRoundGuess = UserRoundGuessMapper.toEntity(roundGuessDto);
-        userRoundGuess = roundService.roundGuess(roundGuessDto.getCode(), userRoundGuess);
-        return null;
+        UserGuessResult userGuessResult = roundService.roundGuess(roundGuessDto.getCode(), userRoundGuess);
+
+        return new UserGuessRoundResultDto()
+                .setArtistNameGuessAccuracy(userGuessResult.getArtistNameGuessAccuracy())
+                .setSongNameGuessAccuracy(userGuessResult.getSongNameGuessAccuracy())
+                .setYearReleasedGuessAccuracy(userGuessResult.getYearReleasedGuessAccuracy())
+                .setScoredRoundResult(ScoredRoundResultDtoMapper.toDto(userGuessResult.getScoredRoundResult()));
+
     }
 }

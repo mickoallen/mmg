@@ -1,12 +1,12 @@
 package com.mick.mmg.game.api.dto;
 
-import com.mick.mmg.game.entity.GameType;
+import com.mick.mmg.game.entity.GameRules;
 
 import java.util.UUID;
 
 public class GameStartConfigDto {
     private String code;
-    private GameType gameType;
+    private GameRules gameRules;
     private UUID playlistId;
     private int numberOfRounds;
 
@@ -19,12 +19,12 @@ public class GameStartConfigDto {
         return this;
     }
 
-    public GameType getGameType() {
-        return gameType;
+    public GameRules getGameRules() {
+        return gameRules;
     }
 
-    public GameStartConfigDto setGameType(GameType gameType) {
-        this.gameType = gameType;
+    public GameStartConfigDto setGameRules(GameRules gameRules) {
+        this.gameRules = gameRules;
         return this;
     }
 

@@ -1,0 +1,32 @@
+{
+  "playlists": [
+    {
+      "id": "7074331f-8d05-4352-bb3a-df3d32c8dbde",
+      "name": "Rock"
+    },
+    {
+      "id": "a3f406ef-27d6-43f7-9852-62debaee84ff",
+      "name": "Classic Rock"
+    },
+    {
+      "id": "eb084627-180d-40e7-9a05-e34467524699",
+      "name": "Country"
+    },
+    {
+      "id": "1a3b4f2c-f0ec-417f-8281-a9fc9e8a9671",
+      "name": "70s"
+    },
+    {
+      "id": "32de4ffc-44a7-42d2-b317-5532c6009217",
+      "name": "90s"
+    },
+    {
+      "id": "54a519b0-944e-42d1-92f3-d6f6c15c813a",
+      "name": "80s"
+    },
+    {
+      "id": "bebd081e-6222-4ddc-b398-a3dd0a754a81",
+      "name": "00s"
+    }
+  ]
+}

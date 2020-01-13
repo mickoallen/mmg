@@ -2,6 +2,8 @@ package com.mick.mmg.db;
 
 
 import com.mick.mmg.game.entity.GameRepository;
+import com.mick.mmg.playlists.Playlist;
+import com.mick.mmg.playlists.PlaylistRepository;
 import com.mick.mmg.round.entity.RoundRepository;
 import com.mick.mmg.songs.service.SongRepository;
 import com.mongodb.client.MongoClient;
@@ -37,6 +39,13 @@ public class DatabaseFactory {
     @Named(SongRepository.COLLECTION_NAME)
     public MongoCollection<Document> provideSongCollection(MongoDatabase mongoDatabase) {
         return mongoDatabase.getCollection(SongRepository.COLLECTION_NAME);
+    }
+
+    @Bean
+    @Singleton
+    @Named(PlaylistRepository.COLLECTION_NAME)
+    public MongoCollection<Document> providePlaylistCollection(MongoDatabase mongoDatabase) {
+        return mongoDatabase.getCollection(PlaylistRepository.COLLECTION_NAME);
     }
 
     @Context

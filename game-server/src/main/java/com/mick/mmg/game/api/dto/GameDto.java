@@ -1,5 +1,7 @@
 package com.mick.mmg.game.api.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mick.mmg.game.entity.GameRules;
 import com.mick.mmg.game.entity.GameState;
 import com.mick.mmg.game.entity.GameType;
 
@@ -11,8 +13,10 @@ public class GameDto {
     private UUID playlistId;
     private int currentRound;
     private int numberOfRounds;
+    @JsonProperty("rules")
+    private GameRules gameRules;
+    @JsonProperty("state")
     private GameState gameState = GameState.WAITING_TO_START;
-    private GameType gameType;
     private List<UserDto> users;
 
     public String getCode() {
@@ -60,12 +64,12 @@ public class GameDto {
         return this;
     }
 
-    public GameType getGameType() {
-        return gameType;
+    public GameRules getGameRules() {
+        return gameRules;
     }
 
-    public GameDto setGameType(GameType gameType) {
-        this.gameType = gameType;
+    public GameDto setGameRules(GameRules gameRules) {
+        this.gameRules = gameRules;
         return this;
     }
 

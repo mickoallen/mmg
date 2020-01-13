@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 @Controller(GameController.GAME_CONTROLLER_ROUTE)
 public class GameController {
-    public static final String GAME_CONTROLLER_ROUTE = "/game";
+    public static final String GAME_CONTROLLER_ROUTE = "/api/game";
 
     private final GameApi gameApi;
 

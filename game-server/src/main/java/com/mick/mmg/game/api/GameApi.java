@@ -40,7 +40,6 @@ public class GameApi {
         GameEntity gameEntity = gameService.getGame(startConfigDto.getCode());
 
         gameEntity
-                .setGameType(startConfigDto.getGameType())
                 .setNumberOfRounds(startConfigDto.getNumberOfRounds())
                 .setPlaylistId(startConfigDto.getPlaylistId());
 

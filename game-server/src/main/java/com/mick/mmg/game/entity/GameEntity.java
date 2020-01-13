@@ -11,7 +11,7 @@ import java.util.UUID;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GameEntity {
     @JsonIgnore
-    public final static String CODE_FIELD = "code";
+    public static final String CODE_FIELD = "code";
     public static final String USERS_FIELD = "users";
 
     @JsonProperty(CODE_FIELD)
@@ -20,7 +20,7 @@ public class GameEntity {
     private int currentRound;
     private int numberOfRounds;
     private GameState gameState = GameState.WAITING_TO_START;
-    private GameType gameType;
+    private GameRules gameRules;
     @JsonProperty(USERS_FIELD)
     private List<User> users = new ArrayList<>();
 
@@ -72,12 +72,12 @@ public class GameEntity {
         return this;
     }
 
-    public GameType getGameType() {
-        return gameType;
+    public GameRules getGameRules() {
+        return gameRules;
     }
 
-    public GameEntity setGameType(GameType gameType) {
-        this.gameType = gameType;
+    public GameEntity setGameRules(GameRules gameRules) {
+        this.gameRules = gameRules;
         return this;
     }
 

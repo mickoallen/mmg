@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 @Controller(RoundController.ROUND_ROUTE)
 public class RoundController {
-    public static final String ROUND_ROUTE = "/round";
+    public static final String ROUND_ROUTE = "/api/round";
 
     private final RoundApi roundApi;
 
@@ -23,9 +23,9 @@ public class RoundController {
             produces = MediaType.APPLICATION_JSON,
             consumes = MediaType.APPLICATION_JSON
     )
-    public HttpResponse<RoundGuessResponseDto> roundGuess(final RoundGuessDto roundGuessDto) {
-        RoundGuessResponseDto roundGuessResponseDto = roundApi.roundGuess(roundGuessDto);
+    public HttpResponse<UserGuessRoundResultDto> roundGuess(final RoundGuessDto roundGuessDto) {
+        UserGuessRoundResultDto userGuessRoundResultDto = roundApi.roundGuess(roundGuessDto);
 
-        return HttpResponse.ok(roundGuessResponseDto);
+        return HttpResponse.ok(userGuessRoundResultDto);
     }
 }

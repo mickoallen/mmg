@@ -1,7 +1,10 @@
 package com.mick.mmg.round.service;
 
 import com.mick.mmg.exceptions.NotFoundException;
+import com.mick.mmg.game.entity.GameEntity;
+import com.mick.mmg.game.entity.GameRepository;
 import com.mick.mmg.game.service.GameStartedEvent;
+import com.mick.mmg.json.JsonCodec;
 import com.mick.mmg.round.RoundStartEvent;
 import com.mick.mmg.round.entity.RoundEntity;
 import com.mick.mmg.round.entity.RoundRepository;
@@ -20,23 +23,31 @@ import java.util.Optional;
 public class RoundService {
     private final RoundRepository roundRepository;
     private final ApplicationEventPublisher applicationEventPublisher;
-    private final UserGuessService userGuessService;
+    private final GuessAccuracyService guessAccuracyService;
+    private final ScoreCalculatorFactory scoreCalculatorFactory;
+    private final GameRepository gameRepository;
 
     @Inject
     public RoundService(
             final RoundRepository roundRepository,
             final ApplicationEventPublisher applicationEventPublisher,
-            final UserGuessService userGuessService) {
+            final GuessAccuracyService guessAccuracyService,
+            final ScoreCalculatorFactory scoreCalculatorFactory,
+            final GameRepository gameRepository) {
         this.roundRepository = roundRepository;
         this.applicationEventPublisher = applicationEventPublisher;
-        this.userGuessService = userGuessService;
+        this.guessAccuracyService = guessAccuracyService;
+        this.scoreCalculatorFactory = scoreCalculatorFactory;
+        this.gameRepository = gameRepository;
     }
 
     public List<RoundEntity> createRounds(List<RoundEntity> rounds){
         return roundRepository.create(rounds);
     }
 
-    public UserRoundGuess roundGuess(String code, UserRoundGuess userRoundGuess) {
+    public UserGuessResult roundGuess(String code, UserRoundGuess userRoundGuess) {
+        GameEntity gameEntity = gameRepository.get(code);
+
         List<RoundEntity> roundsForGame = roundRepository.getRoundsForGame(code);
         RoundEntity roundEntity = roundsForGame
                 .stream()
@@ -44,8 +55,13 @@ public class RoundService {
                 .findFirst()
                 .orElseThrow(() -> new NotFoundException("That round doesn't exist for game " + userRoundGuess));
 
-        UserGuessResult userGuessResult = userGuessService.calculatePercentCorrect(roundEntity, userRoundGuess);
-        return null;
+        UserGuessResult userGuessResult = guessAccuracyService.calculatePercentCorrect(roundEntity, userRoundGuess);
+        ScoredRoundResult scoredRound = scoreCalculatorFactory.getScoreCalculator().getScoredRound(userGuessResult, userRoundGuess.getTimeTaken(), gameEntity.getGameRules());
+        userGuessResult.setScoredRoundResult(scoredRound);
+
+        applicationEventPublisher.publishEvent(userGuessResult);
+
+        return userGuessResult;
     }
 
     @EventListener
@@ -59,5 +75,15 @@ public class RoundService {
         RoundEntity roundEntity = firstRoundOptional.get();
 
         applicationEventPublisher.publishEvent(new RoundStartEvent().setRoundEntity(roundEntity));
+    }
+
+    @EventListener
+    @Async
+    public void userSubmitted(UserGuessResult userGuessResult){
+        //check if the round has finished
+        //report that round has finished
+        //start new round if there are still rounds remaining
+        //or
+        //finish game
     }
 }

@@ -1,9 +1,30 @@
 package com.mick.mmg.round.entity;
 
+import com.mick.mmg.round.service.ScoredRoundResult;
+
 public class UserGuessResult {
+    private final UserRoundGuess userRoundGuess;
+    private ScoredRoundResult scoredRoundResult;
     private int songNameGuessAccuracy;
     private int artistNameGuessAccuracy;
     private int yearReleasedGuessAccuracy;
+
+    public UserGuessResult(UserRoundGuess userRoundGuess) {
+        this.userRoundGuess = userRoundGuess;
+    }
+
+    public UserRoundGuess getUserRoundGuess() {
+        return userRoundGuess;
+    }
+
+    public ScoredRoundResult getScoredRoundResult() {
+        return scoredRoundResult;
+    }
+
+    public UserGuessResult setScoredRoundResult(ScoredRoundResult scoredRoundResult) {
+        this.scoredRoundResult = scoredRoundResult;
+        return this;
+    }
 
     public int getSongNameGuessAccuracy() {
         return songNameGuessAccuracy;

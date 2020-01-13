@@ -11,7 +11,6 @@ public class GameMapper {
                 .setCode(gameEntity.getCode())
                 .setCurrentRound(gameEntity.getCurrentRound())
                 .setGameState(gameEntity.getGameState())
-                .setGameType(gameEntity.getGameType())
                 .setNumberOfRounds(gameEntity.getNumberOfRounds())
                 .setPlaylistId(gameEntity.getPlaylistId())
                 .setUsers(gameEntity.getUsers().stream().map(UserMapper::toDto).collect(Collectors.toList()));

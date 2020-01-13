@@ -6,12 +6,12 @@
                     <v-card flat color="primary">
                         <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-btn color="secondary" to="/start">Start a new game</v-btn>
+                            <v-btn color="secondary" to="/create">Create Game</v-btn>
                             <v-spacer></v-spacer>
                         </v-card-actions>
                         <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-btn color="secondary" to="/join">Join a game</v-btn>
+                            <v-btn color="secondary" to="/join">Join Game</v-btn>
                             <v-spacer></v-spacer>
                         </v-card-actions>
                     </v-card>
