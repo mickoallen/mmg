@@ -5,7 +5,7 @@
                 <v-row justify="center">
                     <v-card flat color="primary">
                         <v-card-text>
-                            <v-text-field v-model="username" color="white" outlined label="name"></v-text-field>
+                            <v-text-field v-model="username" color="white" outlined label="Enter name"></v-text-field>
                         </v-card-text>
                         <v-card-actions>
                             <v-spacer></v-spacer>
@@ -42,8 +42,8 @@ export default {
             axios
                 .put(SERVER_URL + "/game", createGameRequest)
                 .then(response => {
-                    this.$store.commit("gameCreated", response);
-                    this.$router.replace("/lobby");
+                    this.$store.commit("gameJoined", response);
+                    this.$router.replace("/host-lobby");
                 })
                 .catch(error => {
                     console.log(error);

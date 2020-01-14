@@ -32,7 +32,7 @@ public class GameControllerTest {
     public void testGameCreate() throws InterruptedException {
         HttpResponse<GameCreateResponseDto> response = client
                 .toBlocking()
-                .exchange(HttpRequest.PUT("/game", new UserCreateDto().setUsername("mick")), GameCreateResponseDto.class);
+                .exchange(HttpRequest.PUT("/api/game", new UserCreateDto().setUsername("mick")), GameCreateResponseDto.class);
 
         //game created
         GameCreateResponseDto gameCreateResponseDto = response.body();
@@ -45,7 +45,7 @@ public class GameControllerTest {
                 .toBlocking()
                 .exchange(
                         HttpRequest.POST(
-                                "/game/" + gameCreateResponseDto.getGameDto().getCode() + "/join",
+                                "/api/game/" + gameCreateResponseDto.getGameDto().getCode() + "/join",
                                 new UserCreateDto().setUsername("simon")
                         ),
                         UserDto.class

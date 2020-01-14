@@ -51,8 +51,8 @@ public class GameController {
             consumes = MediaType.APPLICATION_JSON,
             produces = MediaType.APPLICATION_JSON
     )
-    public HttpResponse<UserDto> joinGame(final UserCreateDto userCreateDto, @PathVariable("code") String code) {
-        UserDto userDto = gameApi.joinGame(userCreateDto, code);
-        return HttpResponse.ok(userDto);
+    public HttpResponse<GameCreateResponseDto> joinGame(final UserCreateDto userCreateDto, @PathVariable("code") String code) {
+        GameCreateResponseDto gameDto = gameApi.joinGame(userCreateDto, code);
+        return HttpResponse.ok(gameDto);
     }
 }

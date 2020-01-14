@@ -2,7 +2,6 @@ package com.mick.mmg.db;
 
 
 import com.mick.mmg.game.entity.GameRepository;
-import com.mick.mmg.playlists.Playlist;
 import com.mick.mmg.playlists.PlaylistRepository;
 import com.mick.mmg.round.entity.RoundRepository;
 import com.mick.mmg.songs.service.SongRepository;
@@ -51,7 +50,7 @@ public class DatabaseFactory {
     @Context
     @Bean
     @Singleton
-    public MongoDatabase provideMongoClient(DatabaseConfig databaseConfig){
+    public MongoDatabase provideMongoClient(DatabaseConfig databaseConfig) {
         MongoClient mongoClient = MongoClients.create(databaseConfig.getUrl());
         return mongoClient.getDatabase(databaseConfig.getDatabaseName());
     }

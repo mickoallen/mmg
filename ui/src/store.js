@@ -8,16 +8,21 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    user:{},
-    game:{},
-    players:[]
+    user: {},
+    game: {},
+    players: []
   },
   mutations: {
-    gameCreated(state, createGameResponse) {
-      state.user = createGameResponse.data.user;
-      state.game = createGameResponse.data.game;
-      
-      state.players.push(state.user);
+    gameJoined(state, joinGameResponse) {
+      state.user = joinGameResponse.data.user;
+      state.game = joinGameResponse.data.game;
+
+
+      joinGameResponse.data.game.users.forEach(user => {
+        state.players.push(user);
+      });
+
+      //establish ws connection
     }
   },
   actions: {

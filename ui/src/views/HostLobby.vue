@@ -1,7 +1,7 @@
 <template>
     <div>
+        <GameCodePanel />
         <v-container>
-            <v-subheader color="primary">Game Code: {{game.code}}</v-subheader>
             <v-col>
                 <v-row>
                     <v-select
@@ -17,20 +17,23 @@
                     <v-switch color="secondary" v-model="songName" class="mx-2" label="Song name"></v-switch>
                 </v-row>
                 <v-row>
-                    <v-switch color="secondary" v-model="artistName" class="mx-2" label="Artist name"></v-switch>
+                    <v-switch
+                        color="secondary"
+                        v-model="artistName"
+                        class="mx-2"
+                        label="Artist name"
+                    ></v-switch>
                 </v-row>
                 <v-row>
-                    <v-switch color="secondary" v-model="yearReleased" class="mx-2" label="Year released"></v-switch>
+                    <v-switch
+                        color="secondary"
+                        v-model="yearReleased"
+                        class="mx-2"
+                        label="Year released"
+                    ></v-switch>
                 </v-row>
                 <v-row>
-                    <v-card color="primary" flat>
-                        <v-card-title>Players</v-card-title>
-                        <v-list color="primary">
-                            <v-list-item v-for="player in players" :key="player.id">
-                                <v-list-item-title>{{player.username}}</v-list-item-title>
-                            </v-list-item>
-                        </v-list>
-                    </v-card>
+                    <players-panel />
                 </v-row>
                 <v-row justify="center">
                     <v-card flat color="primary">
@@ -48,8 +51,12 @@
 import axios from "axios";
 import { SERVER_URL } from "../config.js";
 import { mapState } from "vuex";
+import GameCodePanel from "../components/GameCodePanel.vue";
+import PlayersPanel from "../components/PlayersPanel.vue";
 
 export default {
+    components: {GameCodePanel, PlayersPanel},
+
     data() {
         return {
             songName: true,

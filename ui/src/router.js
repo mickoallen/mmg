@@ -3,7 +3,8 @@ import Router from 'vue-router';
 import Home from './views/Home.vue';
 import StartGame from './views/StartGame.vue';
 import JoinGame from './views/JoinGame.vue';
-import Lobby from './views/Lobby.vue';
+import HostLobby from './views/HostLobby.vue';
+import JoinLobby from './views/JoinLobby.vue';
 
 Vue.use(Router);
 
@@ -14,7 +15,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/start*',
+      path: '/start',
       component: StartGame
     },
     {
@@ -22,8 +23,16 @@ export default new Router({
       component: JoinGame
     },
     {
-      path: '/lobby',
-      component: Lobby
+      path: '/host-lobby',
+      component: HostLobby
+    },
+    {
+      path: '/join-lobby',
+      component: JoinLobby
+    },
+    {
+      path: '/game',
+      component: JoinLobby
     }
   ]
 })
